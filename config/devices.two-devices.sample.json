@@ -1,0 +1,29 @@
+{
+  "devices": [
+    {
+      "name": "relay01",
+      "host": "192.168.1.120",
+      "port": 80,
+      "timeout_seconds": 2.0,
+      "channel_count": 8
+    },
+    {
+      "name": "relay02",
+      "host": "192.168.1.121",
+      "port": 80,
+      "timeout_seconds": 2.0,
+      "channel_count": 8
+    }
+  ],
+  "outputs": [
+    { "output": 1, "device": "relay01", "channel": 1 },
+    { "output": 2, "device": "relay01", "channel": 2 },
+    { "output": 3, "device": "relay01", "channel": 3 },
+    { "output": 4, "device": "relay01", "channel": 4 },
+    { "output": 5, "device": "relay01", "channel": 5 },
+    { "output": 6, "device": "relay01", "channel": 6 },
+    { "output": 7, "device": "relay01", "channel": 7 },
+    { "output": 8, "device": "relay01", "channel": 8 },
+    { "output": 9, "device": "relay02", "channel": 1 }
+  ]
+}

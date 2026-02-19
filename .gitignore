@@ -1,0 +1,14 @@
+# Ignore Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+
+# Local config overrides
+config/*.local.json
+
+# IDE
+.vscode/
+.idea/

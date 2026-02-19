@@ -1,0 +1,11 @@
+{
+  "devices": [
+    {
+      "name": "relay01",
+      "host": "192.168.1.120",
+      "port": 80,
+      "timeout_seconds": 2.0,
+      "channel_count": 8
+    }
+  ]
+}
