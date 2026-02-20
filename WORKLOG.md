@@ -5,3 +5,9 @@
 - Added reusable Python package (`client`, `config`, `router`) plus CLI commands (`status`, `set`, `toggle`, `all-on`, `all-off`).
 - Added one-device and two-device sample mappings including logical output 9 on a second board.
 - Added basic unit tests for routing/mapping behavior.
+
+## 2026-02-20
+- Adopted `config/output-map.json` as the source-of-truth file for `PC1..PC9` logical output mapping.
+- Added `DtekWaveshareController` with simple app-facing methods (`set_output`, `set_pc`, `toggle_output`, `read_output`).
+- Added wrapper usage example (`examples/control_from_app.py`) and controller unit tests (`tests/test_controller.py`).
+- Updated `README.md` with baseline Ethernet verification steps and stable integration workflow.

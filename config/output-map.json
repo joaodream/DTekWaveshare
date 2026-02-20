@@ -1,0 +1,17 @@
+{
+  "devices": [
+    { "name": "relay01", "ip": "192.168.4.1", "channels": 8 },
+    { "name": "relay02", "ip": "TBD", "channels": 8 }
+  ],
+  "pc_to_output": [
+    { "pc": "PC1", "output": 1, "device": "relay01", "channel": 1 },
+    { "pc": "PC2", "output": 2, "device": "relay01", "channel": 2 },
+    { "pc": "PC3", "output": 3, "device": "relay01", "channel": 3 },
+    { "pc": "PC4", "output": 4, "device": "relay01", "channel": 4 },
+    { "pc": "PC5", "output": 5, "device": "relay01", "channel": 5 },
+    { "pc": "PC6", "output": 6, "device": "relay01", "channel": 6 },
+    { "pc": "PC7", "output": 7, "device": "relay01", "channel": 7 },
+    { "pc": "PC8", "output": 8, "device": "relay01", "channel": 8 },
+    { "pc": "PC9", "output": 9, "device": "relay02", "channel": 1 }
+  ]
+}
