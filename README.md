@@ -21,6 +21,60 @@ This project uses firmware endpoints compatible with:
 
 These are HTTP over TCP/IP. In production, use the Ethernet interface.
 
+## TCP Server Mode (Firmware)
+
+For direct machine-to-machine control, firmware can expose a plain TCP server (port `5000`) over Ethernet.
+
+Text command protocol used in the current setup:
+
+- `PING`
+- `HELP`
+- `GET <channel>` (example: `GET 1`)
+- `GET ALL`
+- `SET <channel> <0|1>` (example: `SET 1 1`)
+- `TOGGLE <channel>`
+- `ALL <0|1>`
+
+Expected responses:
+
+- `OK ...` on success
+- `ERR ...` on invalid command/arguments
+
+### Practical Board Validation
+
+1. Flash the updated firmware to the board.
+2. Open serial monitor (`115200`) and confirm:
+- `TCP server listening on port 5000`
+3. From PowerShell, test a command cycle:
+
+```powershell
+$ip = "192.168.10.2"
+$port = 5000
+
+function Send-TcpCmd($cmd) {
+  $tcp = New-Object System.Net.Sockets.TcpClient($ip, $port)
+  $stream = $tcp.GetStream()
+  $writer = New-Object System.IO.StreamWriter($stream)
+  $reader = New-Object System.IO.StreamReader($stream)
+  $writer.AutoFlush = $true
+
+  $banner = $reader.ReadLine()
+  $writer.WriteLine($cmd)
+  $response = $reader.ReadLine()
+
+  $tcp.Close()
+  "CMD: $cmd"
+  "BANNER: $banner"
+  "RESP: $response"
+}
+
+Send-TcpCmd "PING"
+Send-TcpCmd "SET 1 1"
+Send-TcpCmd "GET 1"
+Send-TcpCmd "SET 1 0"
+Send-TcpCmd "GET ALL"
+```
+
 ## Baseline Record (Do This Once)
 
 1. Flash board firmware and verify relay control.
@@ -72,6 +126,12 @@ ctl.set_output(1, False)  # turn OFF output 1
 ```powershell
 dtek-waveshare --config .\config\devices.sample.json status
 dtek-waveshare --config .\config\devices.sample.json set --output 1 --state on
+```
+
+4. TCP smoke test helper script:
+
+```powershell
+.\examples\tcp_smoke_test.ps1 -Ip 192.168.10.2 -Port 5000
 ```
 
 ## Tests
